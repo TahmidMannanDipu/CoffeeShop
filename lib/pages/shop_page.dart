@@ -18,10 +18,16 @@ class _ShopPageState extends State<ShopPage> {
   void addToCart(Coffee coffee) {
     Provider.of<CoffeeShop>(context, listen: false).addItemToCart(coffee);
     showDialog(
-        context: context,
-        builder: (context) => const AlertDialog(
-              title: Text("Successfully added to cart"),
-            ));
+      context: context,
+      builder: (context) => const AlertDialog(
+        title: Text("Successfully added to cart"),
+      ),
+    );
+    Future.delayed(const Duration(seconds: 1), () {
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+    });
   }
 
   @override
